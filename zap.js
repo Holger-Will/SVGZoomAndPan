@@ -9,7 +9,7 @@ function addSVGZoomAndPan(svg){
      svg.currentScale=newScale
      svg.currentTranslate.x+=evt.offsetX
      svg.currentTranslate.y+=evt.offsetY
-     var event = new Event('zoom');
+     var event = new Event('SVGZoom');
      svg.dispatchEvent(event)
   })
   svg.addEventListener("mousedown",function(evt){
@@ -21,19 +21,19 @@ function addSVGZoomAndPan(svg){
       var oty=svg.currentTranslate.y
       svg.addEventListener("mousemove",move)
       document.addEventListener("mouseup",out)
-      var event = new Event('pan-start');
+      var event = new Event('SVGScroll');
       svg.dispatchEvent(event)
       function out(evt){
         svg.removeEventListener("mousemove",move)
         document.removeEventListener("mouseup",out)
         svg.classList.remove("dragging")
-        var event = new Event('pan-end');
+        var event = new Event('SVGScroll');
         svg.dispatchEvent(event)
       }
       function move(evt){
         svg.currentTranslate.x=otx+(evt.offsetX-ox)
         svg.currentTranslate.y=oty+(evt.offsetY-oy)
-        var event = new Event('pan');
+        var event = new Event('SVGScroll');
         svg.dispatchEvent(event)
       }
     }
