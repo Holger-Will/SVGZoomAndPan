@@ -7,6 +7,10 @@
     <script>
       window.addEventListener("load",function(){
         addSVGZoomAndPan(mysvg)
+        mysvg.addEventListener("zoom",function(evt){console.log("zoom",evt.target.currentScale)})
+        mysvg.addEventListener("pan-start",function(evt){console.log("panning started",evt.target.currentTranslate)})
+        mysvg.addEventListener("pan-end",function(evt){console.log("panning stoped",evt.target.currentTranslate)})
+        mysvg.addEventListener("pan",function(evt){console.log("panning",evt.target.currentTranslate)})
       })
     </script>
     <style>
@@ -15,7 +19,7 @@
     </style>
   </head>
   <body>
-    "shif"+drag to move | scroll to zoom<br/>
+    "shif"+drag or middle-click drag to move | scroll to zoom<br/>
       <svg id="mysvg">
         <image href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Winkel_triple_projection_SW.jpg/1280px-Winkel_triple_projection_SW.jpg"/>
       </svg>
